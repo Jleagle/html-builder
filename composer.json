@@ -1,0 +1,17 @@
+{
+    "name": "jleagle/helpers",
+    "keywords": [],
+    "description": "",
+    "authors": [
+        {
+            "name": "James Eagle",
+            "email": "jimeagle@gmail.com",
+            "homepage": "http://jimeagle.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "Jleagle\\Helpers": "src"
+        }
+    }
+}
