@@ -32,17 +32,24 @@ class Dom
                             "met", "meta", "param", "source", "track", "wbr"];
 
   /**
-   * @param string   $element
-   * @param string[] $attributes
-   * @param Dom[]    $children
-   * @param string   $content
+   * @param string    $element
+   * @param string[]  $attributes
+   * @param Dom|Dom[] $children
+   * @param string    $content
+   *
+   * @throws \Exception
    */
-  public function __construct($element = null, array $attributes = [], array $children = [], $content = null)
+  public function __construct($element = null, array $attributes = [], $children = [], $content = null)
   {
     $this->setElement($element);
     $this->setAttributes($attributes);
     $this->setChildren($children);
     $this->setContent($content);
+
+    if ($this->_content && $this->isVoid())
+    {
+      throw new \Exception($element.' tags do not support content.');
+    }
   }
 
   /**
@@ -55,7 +62,6 @@ class Dom
     $this->_children[] = $dom;
     return $this;
   }
-
 
   /**
    * @param Dom $dom
@@ -97,7 +103,6 @@ class Dom
   public function removeClass($class)
   {
     $current = $this->getAttribute('class');
-
     $current = explode(' ', $current);
     $new = array_diff($current, array($class));
     if ($new)
@@ -155,22 +160,26 @@ class Dom
     {
       return '';
     }
-
     $return = [];
     foreach($this->_attributes as $attribute => $value)
     {
-      if ($value)
+      if (is_numeric($attribute))
       {
-        $return[] = $attribute . '="' . $value . '"';
+        $return[] = $value;
       }
       else
       {
-        $return[] = $attribute;
+        $return[] = $attribute . '="' . $value . '"';
       }
     }
     return ' '.implode(' ', $return);
   }
 
+  /**
+   * @param string $attribute
+   *
+   * @return $this
+   */
   public function removeAttribute($attribute)
   {
     unset($this->_attributes[$attribute]);
@@ -178,7 +187,7 @@ class Dom
   }
 
   /**
-   * @return string
+   * @return string string
    */
   public function getElement()
   {
@@ -237,7 +246,6 @@ class Dom
     return $this;
   }
 
-
   /**
    * @param string $attribute
    * @param string $value
@@ -247,10 +255,6 @@ class Dom
    */
   public function setAttribute($attribute, $value = '')
   {
-    if (is_numeric($attribute))
-    {
-      throw new \Exception('Error adding attribute.');
-    }
     $this->_attributes[$attribute] = $value;
     return $this;
   }
@@ -269,27 +273,26 @@ class Dom
     return $this;
   }
 
-
   /**
-   * @param array $children
+   * @param Dom|Dom[] $children
    *
    * @return $this
    * @throws \Exception
    */
-  public function setChildren(array $children)
+  public function setChildren($children)
   {
-    $this->_children = [];
-    foreach($children as $child)
+    if(!is_array($children))
     {
-      if ($child instanceof Dom)
+      $children = [$children];
+    }
+    foreach($children as $k => $child)
+    {
+      if (!$child instanceof Dom)
       {
-        $this->_children[] = $child;
-      }
-      else
-      {
-        throw new \Exception('Each child must be a Dom object.');
+        unset($children[$k]);
       }
     }
+    $this->_children = $children;
     return $this;
   }
 
