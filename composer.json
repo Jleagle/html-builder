@@ -10,8 +10,8 @@
         }
     ],
     "autoload": {
-        "psr-0": {
-            "Jleagle\\Helpers": "src"
+        "psr-4": {
+            "Jleagle\\Helpers\\": "src"
         }
     }
 }
