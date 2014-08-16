@@ -1,7 +1,7 @@
 {
-    "name": "jleagle/helpers",
-    "keywords": ["dom", "html", "helper"],
-    "description": "Dom builder",
+    "name": "jleagle/html-builder",
+    "keywords": ["dom", "html", "builder", "helper"],
+    "description": "HTML Builder",
     "authors": [
         {
             "name": "James Eagle",
@@ -11,7 +11,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Jleagle\\Helpers\\": "src"
+            "Jleagle\\": "src"
         }
     }
 }

@@ -1,5 +1,5 @@
 <?php
-namespace Jleagle\Helpers;
+namespace Jleagle;
 
 class Dom
 {
