@@ -15,60 +15,54 @@ class Dom
   private $_attributes;
 
   /**
-   * @var Dom[]
+   * @var Dom[]|string[]
    */
   private $_children;
 
   /**
-   * @var string
-   */
-  private $_content;
-
-  /**
    * @var string[]
    */
-  private $_voidElements = ["area", "base", "basefont", "br", "col", "command", "embed",
-                            "frame", "hr", "img", "input", "keygen", "link", "menuitem",
-                            "met", "meta", "param", "source", "track", "wbr"];
+  private $_voidElements = ["area", "base", "basefont", "br", "col", "command",
+                            "embed", "frame", "hr", "img", "input", "keygen",
+                            "link", "menuitem", "met", "meta", "param",
+                            "source", "track", "wbr"];
 
   /**
-   * @param string    $element
-   * @param string[]  $attributes
-   * @param Dom|Dom[] $children
-   * @param string    $content
+   * @param string         $element
+   * @param string[]       $attributes
+   * @param Dom[]|string[] $children
    *
    * @throws \Exception
    */
-  public function __construct($element = null, array $attributes = [], $children = [], $content = null)
+  public function __construct($element = null, array $attributes = null, $children = null)
   {
+    if ($this->isVoid() && !is_null($this->_children))
+    {
+      throw new \Exception($element.' tags do not support childen.');
+    }
+
     $this->setElement($element);
     $this->setAttributes($attributes);
     $this->setChildren($children);
-    $this->setContent($content);
-
-    if ($this->_content && $this->isVoid())
-    {
-      throw new \Exception($element.' tags do not support content.');
-    }
   }
 
   /**
-   * @param Dom $dom
+   * @param Dom|string $dom
    *
    * @return $this
    */
-  public function append(Dom $dom)
+  public function append($dom)
   {
     $this->_children[] = $dom;
     return $this;
   }
 
   /**
-   * @param Dom $dom
+   * @param Dom|string $dom
    *
    * @return $this
    */
-  public function prepend(Dom $dom)
+  public function prepend($dom)
   {
     array_unshift($this->_children, $dom);
     return $this;
@@ -121,7 +115,7 @@ class Dom
    */
   private function isVoid()
   {
-    return ($this->_element && isset($this->_voidElements[$this->_element]));
+    return ($this->_element && in_array($this->_element, $this->_voidElements));
   }
 
   /**
@@ -133,18 +127,17 @@ class Dom
     if ($this->_element)
     {
       $return .= '<'.$this->_element . $this->renderAttributes();
-      if ($this->isVoid() && !$this->_content)
+      if ($this->isVoid())
       {
         $return .= ' /';
       }
       $return .= '>';
     }
-    $return .= $this->_content;
     foreach($this->_children as $child)
     {
       $return .= (string)$child;
     }
-    if ($this->_element && (!$this->isVoid() || $this->_content))
+    if ($this->_element && (!$this->isVoid()))
     {
       $return .= '</'.$this->_element.'>';
     }
@@ -163,9 +156,9 @@ class Dom
     $return = [];
     foreach($this->_attributes as $attribute => $value)
     {
-      if (is_numeric($attribute))
+      if (is_null($value))
       {
-        $return[] = $value;
+        $return[] = $attribute;
       }
       else
       {
@@ -173,17 +166,6 @@ class Dom
       }
     }
     return ' '.implode(' ', $return);
-  }
-
-  /**
-   * @param string $attribute
-   *
-   * @return $this
-   */
-  public function removeAttribute($attribute)
-  {
-    unset($this->_attributes[$attribute]);
-    return $this;
   }
 
   /**
@@ -199,16 +181,13 @@ class Dom
    *
    * @return string|null
    */
-  public function getAttribute($attribute)
+  private function getAttribute($attribute)
   {
     if (isset($this->_attributes[$attribute]))
     {
       return $this->_attributes[$attribute];
     }
-    else
-    {
-      return '';
-    }
+    return null;
   }
 
   /**
@@ -220,19 +199,11 @@ class Dom
   }
 
   /**
-   * @return Dom[]
+   * @return Dom[]|string[]
    */
   public function getChildren()
   {
     return $this->_children;
-  }
-
-  /**
-   * @return string
-   */
-  public function getContent()
-  {
-    return $this->_content;
   }
 
   /**
@@ -247,63 +218,66 @@ class Dom
   }
 
   /**
+   * @param array $attributes
+   *
+   * @return $this
+   */
+  public function setAttributes($attributes)
+  {
+    if (is_array($attributes))
+    {
+      foreach($attributes as $k => $v)
+      {
+        $this->setAttribute($k, $v);
+      }
+    }
+    return $this;
+  }
+
+  /**
    * @param string $attribute
    * @param string $value
    *
    * @return $this
    * @throws \Exception
    */
-  public function setAttribute($attribute, $value = '')
+  public function setAttribute($attribute, $value = null)
   {
     $this->_attributes[$attribute] = $value;
     return $this;
   }
 
   /**
-   * @param array $attributes
-   *
-   * @return $this
-   */
-  public function setAttributes(array $attributes)
-  {
-    foreach($attributes as $k => $v)
-    {
-      $this->setAttribute($k, $v);
-    }
-    return $this;
-  }
-
-  /**
-   * @param Dom|Dom[] $children
+   * @param Dom[]|string[] $children
    *
    * @return $this
    * @throws \Exception
    */
   public function setChildren($children)
   {
+    if (is_null($children))
+    {
+      $this->_children = [];
+      return $this;
+    }
+
     if(!is_array($children))
     {
       $children = [$children];
     }
-    foreach($children as $k => $child)
-    {
-      if (!$child instanceof Dom)
-      {
-        unset($children[$k]);
-      }
-    }
+
     $this->_children = $children;
     return $this;
   }
 
   /**
-   * @param string $content
+   * @param string $attribute
    *
    * @return $this
    */
-  public function setContent($content)
+  public function removeAttribute($attribute)
   {
-    $this->_content = $content;
+    unset($this->_attributes[$attribute]);
     return $this;
   }
 

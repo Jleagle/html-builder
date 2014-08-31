@@ -1,17 +1,20 @@
 {
-    "name": "jleagle/html-builder",
-    "keywords": ["dom", "html", "builder", "helper"],
-    "description": "HTML Builder",
-    "authors": [
-        {
-            "name": "James Eagle",
-            "email": "jimeagle@gmail.com",
-            "homepage": "http://jimeagle.com"
-        }
-    ],
-    "autoload": {
-        "psr-4": {
-            "Jleagle\\": "src"
-        }
+  "name": "jleagle/html-builder",
+  "keywords": ["dom", "html", "builder", "helper"],
+  "description": "HTML Builder",
+  "authors": [
+    {
+      "name": "James Eagle",
+      "email": "jimeagle@gmail.com",
+      "homepage": "http://jimeagle.com"
     }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Jleagle\\": "src"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.1.*"
+  }
 }
