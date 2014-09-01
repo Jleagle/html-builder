@@ -50,4 +50,10 @@ class DomTest extends PHPUnit_Framework_TestCase
 
   }
 
+  public function testException()
+  {
+    $this->setExpectedException('Exception');
+    $dom = new Dom('hr', null, ['child', 'child2']);
+  }
+
 }

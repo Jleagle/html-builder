@@ -36,14 +36,14 @@ class Dom
    */
   public function __construct($element = null, array $attributes = null, $children = null)
   {
-    if ($this->isVoid() && !is_null($this->_children))
-    {
-      throw new \Exception($element.' tags do not support childen.');
-    }
-
     $this->setElement($element);
     $this->setAttributes($attributes);
     $this->setChildren($children);
+
+    if ($this->isVoid() && $this->_children)
+    {
+      throw new \Exception($element.' tags do not support childen.');
+    }
   }
 
   /**
