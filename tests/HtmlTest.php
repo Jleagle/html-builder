@@ -1,16 +1,16 @@
 <?php
-use \Jleagle\Dom;
+use \Jleagle\Html;
 
-class DomTest extends PHPUnit_Framework_TestCase
+class HtmlTest extends PHPUnit_Framework_TestCase
 {
 
   public function testForm()
   {
 
-    $void = new Dom('hr');
+    $void = new Html('hr');
     $this->assertEquals('<hr />', (string)$void);
 
-    $dom = new Dom('x');
+    $dom = new Html('x');
     $this->assertEquals('<x></x>', (string)$dom);
 
     $dom->append('child1');
@@ -48,12 +48,16 @@ class DomTest extends PHPUnit_Framework_TestCase
     $dom->setChildren('child');
     $this->assertEquals(['child'], $dom->getChildren());
 
+    $static = Html::make('a', ['href' => 'Html.php', 'class' => 'link'], 'Some text');
+    $this->assertEquals('<a href="Html.php" class="link">Some text</a>', $static);
+
   }
 
   public function testException()
   {
     $this->setExpectedException('Exception');
-    $dom = new Dom('hr', null, ['child', 'child2']);
+    $dom = new Html('', null, ['child', 'child2'], 'Some text');
+    $dom = new Html('hr', null, ['child', 'child2']);
   }
 
 }

@@ -1,7 +1,7 @@
 <?php
 namespace Jleagle;
 
-class Dom
+class Html
 {
 
   /**
@@ -15,7 +15,7 @@ class Dom
   private $_attributes;
 
   /**
-   * @var Dom[]|string[]
+   * @var Html[]|string[]
    */
   private $_children;
 
@@ -30,7 +30,7 @@ class Dom
   /**
    * @param string         $element
    * @param string[]       $attributes
-   * @param Dom[]|string[] $children
+   * @param Html[]|string[] $children
    *
    * @throws \Exception
    */
@@ -47,7 +47,19 @@ class Dom
   }
 
   /**
-   * @param Dom|string $dom
+   * @param string                      $element
+   * @param string[]                    $attributes
+   * @param Html|string|Html[]|string[] $children
+   *
+   * @return Html
+   */
+  public static function make($element = null, array $attributes = null, $children = null)
+  {
+    return (string)new self($element, $attributes, $children);
+  }
+
+  /**
+   * @param Html|string $dom
    *
    * @return $this
    */
@@ -58,7 +70,7 @@ class Dom
   }
 
   /**
-   * @param Dom|string $dom
+   * @param Html|string $dom
    *
    * @return $this
    */
@@ -199,7 +211,7 @@ class Dom
   }
 
   /**
-   * @return Dom[]|string[]
+   * @return Html[]|string[]
    */
   public function getChildren()
   {
@@ -248,7 +260,7 @@ class Dom
   }
 
   /**
-   * @param Dom[]|string[] $children
+   * @param Html[]|string[] $children
    *
    * @return $this
    * @throws \Exception
