@@ -28,9 +28,9 @@ class Html
                             "source", "track", "wbr"];
 
   /**
-   * @param string         $element
-   * @param string[]       $attributes
-   * @param Html[]|string[] $children
+   * @param null|string          $element
+   * @param null|string[]        $attributes
+   * @param null|Html[]|string[] $children
    *
    * @throws \Exception
    */
@@ -110,7 +110,7 @@ class Html
   {
     $current = $this->getAttribute('class');
     $current = explode(' ', $current);
-    $new = array_diff($current, array($class));
+    $new = array_diff($current, [$class]);
     if ($new)
     {
       $this->setAttribute('class', implode(' ', $new));
