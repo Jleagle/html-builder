@@ -49,7 +49,7 @@ echo Html::make('ul', ['id' => 'list'], $listItems);
 
 Which will echo
 
-```php
+```html
 <ul id="list">
   <li>1</li>
   <li>2</li>

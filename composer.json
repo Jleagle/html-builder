@@ -1,6 +1,11 @@
 {
   "name": "jleagle/html-builder",
-  "keywords": ["dom", "html", "builder", "helper"],
+  "keywords": [
+    "dom",
+    "html",
+    "builder",
+    "helper"
+  ],
   "description": "HTML Builder",
   "authors": [
     {
@@ -18,6 +23,7 @@
     "php": ">=5.4.0"
   },
   "require-dev": {
-    "phpunit/phpunit": "4.1.*"
+    "phpunit/phpunit": "4.1.*",
+    "satooshi/php-coveralls": "dev-master"
   }
 }
