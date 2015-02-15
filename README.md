@@ -1,60 +1,46 @@
-HTML Builder
-============
+# html-builder
 
-[![Build Status (Travis)](https://img.shields.io/travis/Jleagle/html-builder/master.svg)](https://travis-ci.org/Jleagle/html-builder/builds)
-[![Code Coverage (scrutinizer)](https://scrutinizer-ci.com/g/Jleagle/html-builder/badges/coverage.png)](https://scrutinizer-ci.com/g/Jleagle/html-builder)
+[![Build Status (Scrutinizer)](https://scrutinizer-ci.com/g/Jleagle/html-builder/badges/build.png)](https://scrutinizer-ci.com/g/Jleagle/html-builder)
 [![Code Quality (scrutinizer)](https://scrutinizer-ci.com/g/Jleagle/html-builder/badges/quality-score.png)](https://scrutinizer-ci.com/g/Jleagle/html-builder)
-[![Dependency Status (versioneye.com)](https://www.versioneye.com/php/Jleagle:html-builder/badge.svg)](https://www.versioneye.com/php/Jleagle:html-builder)
-[![Downloads Total](https://poser.pugx.org/Jleagle/html-builder/downloads.svg)](https://packagist.org/packages/Jleagle/html-builder)
+[![Latest Stable Version](https://poser.pugx.org/Jleagle/html-builder/v/stable.png)](https://packagist.org/packages/Jleagle/html-builder)
+[![Latest Unstable Version](https://poser.pugx.org/Jleagle/html-builder/v/unstable.png)](https://packagist.org/packages/Jleagle/html-builder)
 
-This class generates valid HTML for you.
+A package to create clean HTML
 
-### Using the class
+### Usage
 
-Create an empty element by specifiying the element type:
+Create elements using their class:
 
 ```php
-Html::make('div');
+$div = new Div();
+$image = new Img('http://example.com/img.png);
 ```
 
-Which returns `<div></div>`
-
-Add attributs to the element by adding an associative array of element names and values:
+Each class has different constructor parameters to help you create the element: 
 
 ```php
-Html::make('div', ['class' => 'div-class', 'id' => 'div-id']);
+$abbr = new Abbr('WIFI', 'Wireless Fidelity');
 ```
 
-Which returns `<div class="div-class" id="div-id"></div>`
+Which returns `<abbr title="Wireless Fidelity">WIFI</abbr>`
 
-To add content to your tag, you can add text or an Html object.
-It can also handle an array of values.
-
-```php
-Html::make('div', ['class' => 'div-class', 'id' => 'div-id']);
-```
-
-Which returns `<div class="div-class" id="div-id">div content!</div>`
-
-An example to show nesting elements
+And helper methods to do common tasks:
 
 ```php
-$listItems = [];
-foreach(range(1, 5) as $value)
+$ul = new Ul();
+foreach([1, 2, 3] as $v)
 {
-  $listItems[] = new Html('li', null, $value);
+  $li = new Li('item '.$v);
+  $ul->addListItem($li);
 }
-echo Html::make('ul', ['id' => 'list'], $listItems);
 ```
 
 Which will echo
 
 ```html
-<ul id="list">
-  <li>1</li>
-  <li>2</li>
-  <li>3</li>
-  <li>4</li>
-  <li>5</li>
+<ul>
+  <li>item 1</li>
+  <li>item 2</li>
+  <li>item 3</li>
 </ul>
 ```

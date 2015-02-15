@@ -2,12 +2,12 @@
 namespace Jleagle\HtmlBuilder\Tags\Abstracts;
 
 use Jleagle\HtmlBuilder\Core\Tag;
-use Jleagle\HtmlBuilder\Tags\Lists\ListItem;
+use Jleagle\HtmlBuilder\Tags\Lists\Li;
 
 abstract class ListAbstract extends Tag
 {
   /**
-   * @param ListItem[] $listItems
+   * @param Li[] $listItems
    * @param string[]   $attributes
    */
   public function __construct($listItems = [], $attributes = [])
@@ -23,9 +23,9 @@ abstract class ListAbstract extends Tag
    */
   public function addListItem($listItem)
   {
-    if(!$listItem instanceof ListItem)
+    if(!$listItem instanceof Li)
     {
-      $listItem = new ListItem($listItem);
+      $listItem = new Li($listItem);
     }
     $this->appendContent($listItem);
     return $this;

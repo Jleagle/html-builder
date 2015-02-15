@@ -6,7 +6,7 @@
     "builder",
     "helper"
   ],
-  "description": "HTML Builder",
+  "description": "A package to create clean HTML",
   "authors": [
     {
       "name": "James Eagle",
