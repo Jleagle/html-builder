@@ -1,7 +1,7 @@
 <?php
 namespace Jleagle\HtmlBuilder\Tags\Lists;
 
-use Jleagle\HtmlBuilder\Tag;
+use Jleagle\HtmlBuilder\Core\Tag;
 
 class ListItem extends Tag
 {

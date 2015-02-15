@@ -1,5 +1,5 @@
 <?php
-namespace Jleagle\HtmlBuilder;
+namespace Jleagle\HtmlBuilder\Core;
 
 class HtmlBuilderExcepton extends \Exception
 {

@@ -1,7 +1,7 @@
 <?php
 namespace Jleagle\HtmlBuilder\Tags\Tables;
 
-use Jleagle\HtmlBuilder\Tag;
+use Jleagle\HtmlBuilder\Core\Tag;
 
 class Col extends Tag
 {

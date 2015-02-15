@@ -1,7 +1,7 @@
 <?php
 namespace Jleagle\HtmlBuilder\Tags\Abstracts;
 
-use Jleagle\HtmlBuilder\Tag;
+use Jleagle\HtmlBuilder\Core\Tag;
 use Jleagle\HtmlBuilder\Tags\Lists\ListItem;
 
 abstract class ListAbstract extends Tag

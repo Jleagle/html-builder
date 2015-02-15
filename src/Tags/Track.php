@@ -1,7 +1,7 @@
 <?php
 namespace Jleagle\HtmlBuilder\Tags;
 
-use Jleagle\HtmlBuilder\HtmlBuilderExcepton;
+use Jleagle\HtmlBuilder\Core\HtmlBuilderExcepton;
 use Jleagle\HtmlBuilder\Tags\Abstracts\ContentAbstract;
 
 class Track extends ContentAbstract

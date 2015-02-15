@@ -1,7 +1,7 @@
 <?php
 namespace Jleagle\HtmlBuilder\Tags;
 
-use Jleagle\HtmlBuilder\Tag;
+use Jleagle\HtmlBuilder\Core\Tag;
 
 class Canvas extends Tag
 {

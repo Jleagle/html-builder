@@ -1,7 +1,7 @@
 <?php
 namespace Jleagle\HtmlBuilder\Tags\Forms;
 
-use Jleagle\HtmlBuilder\Tag;
+use Jleagle\HtmlBuilder\Core\Tag;
 
 class DataList extends Tag
 {

@@ -1,7 +1,7 @@
 <?php
 namespace Jleagle\HtmlBuilder\Tags\Maps;
 
-use Jleagle\HtmlBuilder\HtmlBuilderExcepton;
+use Jleagle\HtmlBuilder\Core\HtmlBuilderExcepton;
 use Jleagle\HtmlBuilder\Tags\Abstracts\LinkAbstract;
 
 class Area extends LinkAbstract

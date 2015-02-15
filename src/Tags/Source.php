@@ -1,11 +1,28 @@
 <?php
 namespace Jleagle\HtmlBuilder\Tags;
 
-use Jleagle\HtmlBuilder\Tags\Abstracts\EmptyAbstract;
+use Jleagle\HtmlBuilder\Core\Tag;
 
-class Source extends EmptyAbstract
+class Source extends Tag
 {
   protected $_tag = 'source';
+
+  public function __construct($source = null, $type = null, $media = null)
+  {
+    if($source)
+    {
+      $this->setSource($source);
+    }
+    if($type)
+    {
+      $this->setType($type);
+    }
+    if($media)
+    {
+      $this->setMedia($source);
+    }
+  }
+
 
   /**
    * @param bool $controls
