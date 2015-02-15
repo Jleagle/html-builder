@@ -1,5 +1,5 @@
 <?php
-namespace Jleagle\HtmlBuilder;
+namespace Jleagle\HtmlBuilder\Core;
 
 class Tag
 {
@@ -327,20 +327,7 @@ class Tag
 
     // Make contents
     $content = $this->_getContentForRender();
-    foreach($content as $elements)
-    {
-      if(is_array($elements))
-      {
-        foreach($elements as $element)
-        {
-          $return .= (string)$element;
-        }
-      }
-      else
-      {
-        $return .= (string)$elements;
-      }
-    }
+    $return .= $this->recursive($content);
 
     // Closing tag
     if($this->_tag && (!$this->isVoid()))
@@ -349,6 +336,28 @@ class Tag
     }
 
     return $return;
+  }
+
+  /**
+   * @param $item
+   *
+   * @return string
+   */
+  public function recursive($item)
+  {
+    if (is_array($item))
+    {
+      $return = '';
+      foreach($item as $v)
+      {
+        $return .= $this->recursive($v);
+      }
+      return $return;
+    }
+    else
+    {
+      return (string)$item;
+    }
   }
 
   /**
