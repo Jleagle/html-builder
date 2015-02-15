@@ -3,7 +3,7 @@ namespace Jleagle\HtmlBuilder\Tags\Lists;
 
 use Jleagle\HtmlBuilder\Tags\Abstracts\ListAbstract;
 
-class UnorderedList extends ListAbstract
+class Ol extends ListAbstract
 {
-  protected $_tag = 'ul';
+  protected $_tag = 'ol';
 }

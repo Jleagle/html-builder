@@ -3,7 +3,7 @@ namespace Jleagle\HtmlBuilder\Tags\Lists;
 
 use Jleagle\HtmlBuilder\Core\Tag;
 
-class ListItem extends Tag
+class Li extends Tag
 {
   protected $_tag = 'li';
 
