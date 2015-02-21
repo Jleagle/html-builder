@@ -74,7 +74,7 @@ class TagTest extends PHPUnit_Framework_TestCase
 
     $pag = new Pagination(5, 5, '/search?page={{page}}');
     $this->assertEquals(
-      '<nav><ul class="pagination"><li><a href="/search?page=4">Previous</a></li><li><a href="/search?page=1">1</a></li><li><a href="/search?page=2">2</a></li><li><a href="/search?page=3">3</a></li><li><a href="/search?page=4">4</a></li><li class="active"><a>5</a></li><li class="disabled"><a href="/search?page=6">Next</a></li></ul></nav>',
+      '<nav><ul class="pagination"><li><a href="/search?page=4">Previous</a></li><li><a href="/search?page=1">1</a></li><li><a href="/search?page=2">2</a></li><li><a href="/search?page=3">3</a></li><li><a href="/search?page=4">4</a></li><li class="active"><a>5</a></li><li class="disabled"><a>Next</a></li></ul></nav>',
       (string)$pag
     );
   }
