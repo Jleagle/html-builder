@@ -144,7 +144,7 @@ class Pagination extends Nav
     $next = new A($this->_makeLink($this->_page + 1), 'Next');
     if($this->_page >= $this->_pages)
     {
-      $previous->removeAttribute('href');
+      $next->removeAttribute('href');
     }
     $next = new Li($next);
     if($this->_page >= $this->_pages)
