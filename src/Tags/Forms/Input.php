@@ -31,10 +31,9 @@ class Input extends FormInputAbstract
 
   protected $_tag = 'input';
 
-  public function __construct($type, $value)
+  public function __construct($type = self::TYPE_TEXT)
   {
     $this->setType($type);
-    $this->setValue($value);
   }
 
   /**
