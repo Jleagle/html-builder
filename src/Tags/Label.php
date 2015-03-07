@@ -1,11 +1,23 @@
 <?php
 namespace Jleagle\HtmlBuilder\Tags;
 
-use Jleagle\HtmlBuilder\Tags\Abstracts\ContentAbstract;
+use Jleagle\HtmlBuilder\Core\Tag;
 
-class Label extends ContentAbstract
+class Label extends Tag
 {
   protected $_tag = 'label';
+
+  /**
+   * @param string $label
+   * @param string $for
+   * @param string   $form
+   */
+  public function __construct($label, $for = null, $form = null)
+  {
+    $this->setContent($label);
+    $this->setFor($for);
+    $this->setForm($form);
+  }
 
   /**
    * @param string $for
