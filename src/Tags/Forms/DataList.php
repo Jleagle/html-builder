@@ -1,20 +1,27 @@
 <?php
 namespace Jleagle\HtmlBuilder\Tags\Forms;
 
-use Jleagle\HtmlBuilder\Core\Tag;
+use Jleagle\HtmlBuilder\AbstractTag;
 
-class DataList extends Tag
+class DataList extends AbstractTag
 {
-  protected $_tag = 'datalist';
+  protected function _getTag()
+  {
+    return 'datalist';
+  }
 
   /**
    * @param string   $id
    * @param string[] $options
+   *
+   * @return static
    */
-  public function __construct($id, array $options = [])
+  public static function make($id, array $options = [])
   {
-    $this->setId($id);
-    $this->addOptions($options);
+    $tag = new static;
+    $tag->setId($id);
+    $tag->addOptions($options);
+    return $tag;
   }
 
   /**
@@ -29,15 +36,18 @@ class DataList extends Tag
   }
 
   /**
-   * @param string $value
+   * @param Option|string $option
    *
    * @return $this
    */
-  public function addOption($value)
+  public function addOption($option)
   {
-    $option = new Option($value);
-    $option->setFlag(Tag::FLAG_OPENING);
-    $this->appendContent($option);
+    if(!$option instanceof Option)
+    {
+      $option = Option::make($option);
+    }
+
+    $this->appendContents($option);
     return $this;
   }
 

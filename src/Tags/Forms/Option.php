@@ -1,23 +1,30 @@
 <?php
 namespace Jleagle\HtmlBuilder\Tags\Forms;
 
-use Jleagle\HtmlBuilder\Core\Tag;
+use Jleagle\HtmlBuilder\AbstractTag;
 
-class Option extends Tag
+class Option extends AbstractTag
 {
-  protected $_tag = 'option';
+  protected function _getTag()
+  {
+    return 'option';
+  }
 
   /**
    * @param string $value
    * @param string $text
+   *
+   * @return void|static
    */
-  public function __construct($value, $text = null)
+  public static function make($value, $text = null)
   {
-    $this->setValue($value);
+    $tag = new static();
+    $tag->setValue($value);
     if($text)
     {
-      $this->setContent($text);
+      $tag->setContents($text);
     }
+    return $tag;
   }
 
   /**

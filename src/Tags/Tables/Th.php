@@ -1,16 +1,19 @@
 <?php
 namespace Jleagle\HtmlBuilder\Tags\Tables;
 
-use Jleagle\HtmlBuilder\Tags\Abstracts\ContentAbstract;
+use Jleagle\HtmlBuilder\Tags\Abstracts\AbstractContent;
 
-class Th extends ContentAbstract
+class Th extends AbstractContent
 {
   const SCOPE_col = 'col';
   const SCOPE_colgroup = 'colgroup';
   const SCOPE_row = 'row';
   const SCOPE_rowgroup = 'rowgroup';
 
-  protected $_tag = 'th';
+  protected function _getTag()
+  {
+    return 'th';
+  }
 
   /**
    * @param string $abbr

@@ -1,10 +1,5 @@
 # html-builder
 
-[![Build Status (Scrutinizer)](https://scrutinizer-ci.com/g/Jleagle/html-builder/badges/build.png)](https://scrutinizer-ci.com/g/Jleagle/html-builder)
-[![Code Quality (scrutinizer)](https://scrutinizer-ci.com/g/Jleagle/html-builder/badges/quality-score.png)](https://scrutinizer-ci.com/g/Jleagle/html-builder)
-[![Latest Stable Version](https://poser.pugx.org/Jleagle/html-builder/v/stable.png)](https://packagist.org/packages/Jleagle/html-builder)
-[![Latest Unstable Version](https://poser.pugx.org/Jleagle/html-builder/v/unstable.png)](https://packagist.org/packages/Jleagle/html-builder)
-
 A package to create clean HTML
 
 ### Usage
@@ -44,3 +39,6 @@ Which will echo
   <li>item 3</li>
 </ul>
 ```
+
+### Credits
+Tag structure taken from [![/u/brianjenkins94](https://www.reddit.com/r/webdev/comments/3yl9yc/i_created_an_html5_mindmap_would_anyone_mind/)

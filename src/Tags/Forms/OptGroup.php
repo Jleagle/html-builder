@@ -1,11 +1,14 @@
 <?php
 namespace Jleagle\HtmlBuilder\Tags\Forms;
 
-use Jleagle\HtmlBuilder\Tags\Abstracts\SelectAbstract;
+use Jleagle\HtmlBuilder\Tags\Abstracts\AbstractSelect;
 
-class OptGroup extends SelectAbstract
+class OptGroup extends AbstractSelect
 {
-  protected $_tag = 'optgroup';
+  protected function _getTag()
+  {
+    return 'optgroup';
+  }
 
   /**
    * @param bool $disabled

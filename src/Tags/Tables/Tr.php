@@ -1,9 +1,12 @@
 <?php
 namespace Jleagle\HtmlBuilder\Tags\Tables;
 
-use Jleagle\HtmlBuilder\Tags\Abstracts\ContentAbstract;
+use Jleagle\HtmlBuilder\Tags\Abstracts\AbstractContent;
 
-class Tr extends ContentAbstract
+class Tr extends AbstractContent
 {
-  protected $_tag = 'tr';
+  protected function _getTag()
+  {
+    return 'tr';
+  }
 }

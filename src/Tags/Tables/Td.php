@@ -1,11 +1,14 @@
 <?php
 namespace Jleagle\HtmlBuilder\Tags\Tables;
 
-use Jleagle\HtmlBuilder\Tags\Abstracts\ContentAbstract;
+use Jleagle\HtmlBuilder\Tags\Abstracts\AbstractContent;
 
-class Td extends ContentAbstract
+class Td extends AbstractContent
 {
-  protected $_tag = 'td';
+  protected function _getTag()
+  {
+    return 'td';
+  }
 
   /**
    * @param int $colSpan

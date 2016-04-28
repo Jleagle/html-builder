@@ -1,9 +1,12 @@
 <?php
 namespace Jleagle\HtmlBuilder\Tags\Forms;
 
-use Jleagle\HtmlBuilder\Tags\Abstracts\SelectAbstract;
+use Jleagle\HtmlBuilder\Tags\Abstracts\AbstractSelect;
 
-class Select extends SelectAbstract
+class Select extends AbstractSelect
 {
-  protected $_tag = 'select';
+  protected function _getTag()
+  {
+    return 'select';
+  }
 }

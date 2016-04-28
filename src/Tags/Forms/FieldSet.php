@@ -1,11 +1,14 @@
 <?php
 namespace Jleagle\HtmlBuilder\Tags\Forms;
 
-use Jleagle\HtmlBuilder\Tags\Abstracts\ContentAbstract;
+use Jleagle\HtmlBuilder\Tags\Abstracts\AbstractContent;
 
-class FieldSet extends ContentAbstract
+class FieldSet extends AbstractContent
 {
-  protected $_tag = 'fieldset';
+  protected function _getTag()
+  {
+    return 'fieldset';
+  }
 
   /**
    * @param bool $disabled

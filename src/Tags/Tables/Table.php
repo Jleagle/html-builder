@@ -1,15 +1,20 @@
 <?php
 namespace Jleagle\HtmlBuilder\Tags\Tables;
 
-use Jleagle\HtmlBuilder\Core\Tag;
+use Jleagle\HtmlBuilder\AbstractTag;
 
-class Table extends Tag
+class Table extends AbstractTag
 {
-  protected $_tag = 'table';
-
-  public function __construct($sortable = false)
+  protected function _getTag()
   {
-    $this->setSortable($sortable);
+    return 'table';
+  }
+
+  public static function make($sortable = false)
+  {
+    $tag = new static;
+    $tag->setSortable($sortable);
+    return $tag;
   }
 
   /**

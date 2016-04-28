@@ -1,23 +1,30 @@
 <?php
 namespace Jleagle\HtmlBuilder\Tags\Forms;
 
-use Jleagle\HtmlBuilder\Tags\Abstracts\FormInputAbstract;
+use Jleagle\HtmlBuilder\Tags\Abstracts\AbstractFormInput;
 
-class Button extends FormInputAbstract
+class Button extends AbstractFormInput
 {
-  protected $_tag = 'button';
+  protected function _getTag()
+  {
+    return 'button';
+  }
 
   /**
    * @param string $text
    * @param string $type
+   *
+   * @return static
    */
-  public function __construct($text, $type = null)
+  public static function make($text, $type = null)
   {
-    $this->setContent($text);
+    $tag = new static();
+    $tag->setContents($text);
     if($type)
     {
-      $this->setType($type);
+      $tag->setType($type);
     }
+    return $tag;
   }
 
   /**

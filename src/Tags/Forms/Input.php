@@ -1,9 +1,9 @@
 <?php
 namespace Jleagle\HtmlBuilder\Tags\Forms;
 
-use Jleagle\HtmlBuilder\Tags\Abstracts\FormInputAbstract;
+use Jleagle\HtmlBuilder\Tags\Abstracts\AbstractFormInput;
 
-class Input extends FormInputAbstract
+class Input extends AbstractFormInput
 {
   const TYPE_BUTTON = 'button';
   const TYPE_CHECKBOX = 'checkbox';
@@ -29,11 +29,26 @@ class Input extends FormInputAbstract
   const TYPE_URL = 'url';
   const TYPE_WEEK = 'week';
 
-  protected $_tag = 'input';
-
-  public function __construct($type = self::TYPE_TEXT)
+  protected function _getTag()
   {
-    $this->setType($type);
+    return 'input';
+  }
+
+  protected function _isVoid()
+  {
+    return true;
+  }
+
+  /**
+   * @param string $type
+   *
+   * @return static
+   */
+  public static function make($type = self::TYPE_TEXT)
+  {
+    $tag = new static;
+    $tag->setType($type);
+    return $tag;
   }
 
   /**

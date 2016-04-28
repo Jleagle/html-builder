@@ -1,18 +1,23 @@
 <?php
 namespace Jleagle\HtmlBuilder\Tags\Tables;
 
-use Jleagle\HtmlBuilder\Core\Tag;
+use Jleagle\HtmlBuilder\AbstractTag;
 
-class ColGroup extends Tag
+class ColGroup extends AbstractTag
 {
-  protected $_tag = 'colgroup';
-
-  public function __construct($span = null)
+  protected function _getTag()
   {
+    return 'colgroup';
+  }
+
+  public static function make($span = null)
+  {
+    $tag = new static;
     if($span)
     {
-      $this->setSpan($span);
+      $tag->setSpan($span);
     }
+    return $tag;
   }
 
   /**
@@ -30,7 +35,7 @@ class ColGroup extends Tag
    */
   public function addColumn(Col $column)
   {
-    $this->appendContent($column);
+    $this->appendContents($column);
     return $this;
   }
 

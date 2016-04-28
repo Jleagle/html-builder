@@ -1,9 +1,12 @@
 <?php
 namespace Jleagle\HtmlBuilder\Tags;
 
-use Jleagle\HtmlBuilder\Tags\Abstracts\ContentAbstract;
+use Jleagle\HtmlBuilder\Tags\Abstracts\AbstractContent;
 
-class Body extends ContentAbstract
+class Body extends AbstractContent
 {
-  protected $_tag = 'body';
+  protected function _getTag()
+  {
+    return 'body';
+  }
 }

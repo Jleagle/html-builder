@@ -1,9 +1,9 @@
 <?php
 namespace Jleagle\HtmlBuilder\Tags\Forms;
 
-use Jleagle\HtmlBuilder\Tags\Abstracts\ContentAbstract;
+use Jleagle\HtmlBuilder\Tags\Abstracts\AbstractContent;
 
-class Form extends ContentAbstract
+class Form extends AbstractContent
 {
   const FORM_METHOD_GET = 'get';
   const FORM_METHOD_POST = 'post';
@@ -12,7 +12,10 @@ class Form extends ContentAbstract
   const ENCODE_TYPE_MULTIPART = 'multipart/form-data';
   const ENCODE_TYPE_TEXT = 'text/plain';
 
-  protected $_tag = 'form';
+  protected function _getTag()
+  {
+    return 'form';
+  }
 
   /**
    * @param string $characterSet

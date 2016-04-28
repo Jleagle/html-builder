@@ -1,14 +1,17 @@
 <?php
 namespace Jleagle\HtmlBuilder\Tags\Forms;
 
-use Jleagle\HtmlBuilder\Tags\Abstracts\ContentAbstract;
+use Jleagle\HtmlBuilder\Tags\Abstracts\AbstractContent;
 
-class TextArea extends ContentAbstract
+class TextArea extends AbstractContent
 {
   const WRAP_HARD = 'hard';
   const WRAP_SOFT = 'soft';
 
-  protected $_tag = 'textarea';
+  protected function _getTag()
+  {
+    return 'textarea';
+  }
 
   /**
    * @param bool $autoFocus
